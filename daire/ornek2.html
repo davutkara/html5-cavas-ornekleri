@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <!-- Bir adet canvas oluşturuyoruz, uzunluk ve genilik değerlini 500 olarak giriyoruz. -->
+    <canvas id="myCanvas" width="500" height="500" style="border:3px solid red;">
+        Kullandığınız tarayıcı HTML5 canvas desteklemiyor.
+    </canvas>
+
+
+</body>
+
+</html>
+
+<script>
+    /*
+        Bu örnekte amacımız, canvas a tıkladığımızda, giderek büyüyen daireler elde edelim.
+        Canvası temizlemediğimizden dolayı dairelerin olası çakışmalarınıda inceleyebiliriz.
+    */
+
+    /*
+        Öncelikle body tagları arasında bulunan canvas objemizi seçiyoruz.
+    */
+    var c = document.getElementById("myCanvas");
+
+    /*
+        Seçtiğmiz canvas objesinden 2 boyutlu bir alan seçiyoruz.
+    */
+    var ctx = c.getContext("2d");
+
+    /*
+        Kolaylık sağlaması açısında pi sayısını pi adında bir değişkene aktardık.
+    */
+    let pi = Math.PI
+
+
+    /*
+        Şimdi mouse a her tıkladığımızda daire çizecek fonksiyonumuzu çalıştırması için, 
+        click eventine listener ekliyoruz. Bu sayede her tıkladığımıda yazdığımız fonksiyon çalışacak.
+    */
+    c.addEventListener("click", function (e) {
+        var i = 10;
+        
+        var colors = ["red","orange","yellow","green","blue","darkblue","purple"];
+        /*
+            Aşağıdaki setInterval fonksiyonu ile yazdığmız kodların her 100 ms de bir çalışmasını sağlıyoruz.
+        */
+        setInterval(function (ctx) {
+
+            // çizimi başlatalım
+            ctx.beginPath();
+            // mouseumun x ve y kordinatlarında oluşacak i yarıçapında bir daire hazırlayalım.
+            ctx.arc(e.clientX-10, e.clientY-10, i, 0, 2 * pi);
+            ctx.strokeStyle = colors[(i/10)%7];
+      
+            // ve canvasa çizelim.
+            ctx.stroke();
+
+            // dairenin büyümesi için yarıçapı 10 arttıralım.
+            i += 10;
+
+            // Bu işlemi 100ms de bir tekrarlayalım.
+        }, 100, ctx, i)
+
+    });
+</script>
