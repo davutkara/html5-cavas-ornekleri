@@ -50,7 +50,7 @@
             // çizimi başlatalım
             ctx.beginPath();
             // mouseumun x ve y kordinatlarında oluşacak i yarıçapında bir daire hazırlayalım.
-            ctx.arc(e.clientX, e.clientY, i, 0, 2 * pi);
+            ctx.arc(e.clientX-10, e.clientY-10, i, 0, 2 * pi);
 
             // ve canvasa çizelim.
             ctx.stroke();
