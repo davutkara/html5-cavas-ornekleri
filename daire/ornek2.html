@@ -42,7 +42,11 @@
     c.addEventListener("click", function (e) {
         var i = 10;
         
+        /*
+            Renkleri ayarlıyoruz.
+        */
         var colors = ["red","orange","yellow","green","blue","darkblue","purple"];
+
         /*
             Aşağıdaki setInterval fonksiyonu ile yazdığmız kodların her 100 ms de bir çalışmasını sağlıyoruz.
         */
@@ -52,6 +56,8 @@
             ctx.beginPath();
             // mouseumun x ve y kordinatlarında oluşacak i yarıçapında bir daire hazırlayalım.
             ctx.arc(e.clientX-10, e.clientY-10, i, 0, 2 * pi);
+            
+            // Her dairenin rengini seçiyoruz.
             ctx.strokeStyle = colors[(i/10)%7];
       
             // ve canvasa çizelim.
